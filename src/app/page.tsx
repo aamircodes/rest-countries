@@ -3,7 +3,7 @@
 import { ChangeEvent, useEffect, useState } from 'react';
 import CountrySearch from './components/CountrySearch';
 import Navbar from './components/Navbar';
-import Countries from './components/Countries';
+import CountryList from './components/CountryList';
 import { getCountries } from './services/countryService';
 
 export default function Home() {
@@ -21,7 +21,7 @@ export default function Home() {
     <div>
       <Navbar />
       <CountrySearch search={search} handleSearchChange={handleSearchChange} />
-      <Countries search={search} countries={countries} />
+      <CountryList search={search} countries={countries} />
     </div>
   );
 }

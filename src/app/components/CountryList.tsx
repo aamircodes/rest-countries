@@ -1,11 +1,12 @@
-import Country from './Country';
+import { Country } from '../services/countryService';
+import CountryCard from './CountryCard';
 
-interface CountriesProps {
+interface CountryListProps {
   search: string;
-  countries: any[];
+  countries: Country[];
 }
 
-const Countries = ({ search, countries }: CountriesProps) => {
+const CountryList = ({ search, countries }: CountryListProps) => {
   const filteredCountries =
     search.trim() === ''
       ? []
@@ -16,11 +17,11 @@ const Countries = ({ search, countries }: CountriesProps) => {
         });
   return (
     <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 m-4'>
-      {filteredCountries.map((country, index) => (
-        <Country key={index} country={country} />
+      {filteredCountries.map((country) => (
+        <CountryCard key={country.cca2} country={country} />
       ))}
     </div>
   );
 };
 
-export default Countries;
+export default CountryList;

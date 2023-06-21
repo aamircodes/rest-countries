@@ -1,14 +1,9 @@
-export interface CountryProps {
-  country: {
-    flags: { png: string; alt: string };
-    name: { common: string };
-    capital: string[];
-    region: string;
-    population: number;
-  };
+import { Country } from '../services/countryService';
+export interface CountryCardProps {
+  country: Country;
 }
 
-const Country = ({ country }: CountryProps) => {
+const CountryCard = ({ country }: CountryCardProps) => {
   const { flags, name, capital, region, population } = country;
   return (
     <div className='card w-96 bg-base-100 shadow-xl'>
@@ -37,4 +32,4 @@ const Country = ({ country }: CountryProps) => {
   );
 };
 
-export default Country;
+export default CountryCard;
