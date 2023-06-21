@@ -6,11 +6,11 @@ describe('CountryCard', () => {
   const mockCountry = {
     flags: {
       png: 'https://example.com/flag.png',
-      alt: 'Country Flag',
+      alt: 'Mock Country Flag',
     },
     name: { common: 'mockCountry' },
     capital: ['mockCapital'],
-    region: 'RegionName',
+    region: 'MockRegion',
     population: 123456,
   };
 
@@ -29,7 +29,7 @@ describe('CountryCard', () => {
     expect(screen.getByText('Capital:')).toBeInTheDocument();
     expect(screen.getByText('mockCapital')).toBeInTheDocument();
     expect(screen.getByText('Region:')).toBeInTheDocument();
-    expect(screen.getByText('RegionName')).toBeInTheDocument();
+    expect(screen.getByText('MockRegion')).toBeInTheDocument();
     expect(screen.getByText('Population:')).toBeInTheDocument();
     expect(screen.getByText('123,456')).toBeInTheDocument();
   });

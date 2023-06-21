@@ -13,7 +13,6 @@ export const getCountries = async (): Promise<Country[]> => {
     const data: Country[] = await response.json();
     return data;
   } catch (error) {
-    console.error('Error fetching countries: ', error);
-    throw error;
+    throw new Error('Fetch error');
   }
 };
