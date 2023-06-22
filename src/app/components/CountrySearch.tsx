@@ -9,7 +9,7 @@ interface CountrySearchProps {
 
 const CountrySearch = ({ search, handleSearchChange }: CountrySearchProps) => {
   return (
-    <div className='form-control m-4'>
+    <div className='form-control'>
       <div className='input-group'>
         <input
           type='text'

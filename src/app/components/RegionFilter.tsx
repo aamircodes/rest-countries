@@ -10,8 +10,8 @@ const RegionFilter = ({
   setSelectedRegion,
 }: RegionFilterProps) => {
   return (
-    <>
-      <label>Filter by Region</label>
+    <div className='flex items-center'>
+      <label className='whitespace-nowrap mr-1'>Filter by Region</label>
       <select
         className='select select-bordered w-full max-w-xs'
         value={selectedRegion}
@@ -24,7 +24,7 @@ const RegionFilter = ({
           </option>
         ))}
       </select>
-    </>
+    </div>
   );
 };
 

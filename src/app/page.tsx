@@ -23,21 +23,26 @@ export default function Home() {
     []
   );
   return (
-    <div>
+    <>
       <Navbar />
-      <Filter
-        setSelectedRegion={setSelectedRegion}
-        selectedRegion={selectedRegion}
-      />
-      <CountrySearch
-        search={countrySearch}
-        handleSearchChange={handleCountrySearchChange}
-      />
-      <CountryList
-        search={countrySearch}
-        countries={countries}
-        selectedRegion={selectedRegion}
-      />
-    </div>
+      <div className='w-11/12 mx-auto'>
+        <div className='w-full flex justify-between items-center my-3'>
+          <CountrySearch
+            search={countrySearch}
+            handleSearchChange={handleCountrySearchChange}
+          />
+          <Filter
+            setSelectedRegion={setSelectedRegion}
+            selectedRegion={selectedRegion}
+          />
+        </div>
+
+        <CountryList
+          search={countrySearch}
+          countries={countries}
+          selectedRegion={selectedRegion}
+        />
+      </div>
+    </>
   );
 }
