@@ -13,7 +13,7 @@ const CountrySearch = ({ search, handleSearchChange }: CountrySearchProps) => {
       <div className='input-group'>
         <input
           type='text'
-          placeholder='Search for a country'
+          placeholder='Search for a country...'
           className='input input-bordered'
           value={search}
           onChange={handleSearchChange}

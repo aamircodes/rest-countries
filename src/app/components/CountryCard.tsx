@@ -9,32 +9,26 @@ const CountryCard = ({ country }: CountryCardProps) => {
 
   return (
     <div
-      className='card w-full h-full bg-base-100 shadow-xl'
+      className='card card-compact bg-base-100 shadow-xl w-72 h-80'
       data-testid='country-card'
     >
-      <figure>
+      <figure className='h-1/2'>
         <img src={flags.png} alt={flags.alt} />
       </figure>
-      <div className='card-body'>
-        <div className='card-body'>
-          <h2 className='card-title' data-testid='country-name'>
-            {name.common}
-          </h2>
-          {capital && (
-            <div>
-              <strong>Capital: </strong> {capital[0]}
-            </div>
-          )}
-          {region && (
-            <div>
-              <strong>Region: </strong> {region}
-            </div>
-          )}
-          {formattedPopulation && (
-            <div>
-              <strong>Population: </strong> {formattedPopulation}
-            </div>
-          )}
+      <div className='card-body h-1/2'>
+        <h2 className='card-title' data-testid='country-name'>
+          {name.common}
+        </h2>
+        {capital && (
+          <div>
+            <strong>Capital: </strong> {capital[0]}
+          </div>
+        )}
+        <div>
+          <strong>Region: </strong> {region}
+        </div>
+        <div>
+          <strong>Population: </strong> {formattedPopulation}
         </div>
       </div>
     </div>

@@ -26,7 +26,7 @@ export default function Home() {
     <>
       <Navbar />
       <div className='w-11/12 mx-auto'>
-        <div className='w-full flex justify-between items-center my-3'>
+        <div className='w-full flex flex-col sm:flex-row gap-2 sm:gap-0 justify-between items-center my-6'>
           <CountrySearch
             search={countrySearch}
             handleSearchChange={handleCountrySearchChange}
@@ -36,7 +36,6 @@ export default function Home() {
             selectedRegion={selectedRegion}
           />
         </div>
-
         <CountryList
           search={countrySearch}
           countries={countries}

@@ -4,7 +4,7 @@ export interface Country {
   capital?: string[];
   region: string;
   population: number;
-  cca2?: string;
+  cioc: string;
 }
 
 export const getCountries = async (): Promise<Country[]> => {
