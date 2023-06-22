@@ -2,8 +2,8 @@ export interface Country {
   flags: { png: string; alt: string };
   name: { common: string };
   capital?: string[];
-  region?: string;
-  population?: number;
+  region: string;
+  population: number;
   cca2?: string;
 }
 
