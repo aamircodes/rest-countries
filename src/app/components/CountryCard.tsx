@@ -4,7 +4,7 @@ export interface CountryCardProps {
 }
 
 const CountryCard = ({ country }: CountryCardProps) => {
-  const { flags, name, capital, region, population } = country;
+  const { flags, name, capital, region, population, cca3 } = country;
   const formattedPopulation = population.toLocaleString();
 
   return (
@@ -17,7 +17,7 @@ const CountryCard = ({ country }: CountryCardProps) => {
       </figure>
       <div className='card-body h-1/2'>
         <h2 className='card-title' data-testid='country-name'>
-          {name.common}
+          <a href={`/${cca3}`}> {name.common}</a>
         </h2>
         {capital && (
           <div>
