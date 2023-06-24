@@ -1,37 +1,55 @@
 import { render, screen } from '@testing-library/react';
+import '@testing-library/jest-dom';
 import CountryList from '@/app/components/CountryList';
 
+const mockCountries = [
+  {
+    cca3: 'abc',
+    flags: { png: '', alt: '' },
+    name: { common: 'CountryA' },
+    region: 'RegionA',
+    population: 1000,
+  },
+  {
+    cca3: 'def',
+    flags: { png: '', alt: '' },
+    name: { common: 'CountryB' },
+    region: 'RegionB',
+    population: 2000,
+  },
+];
+
 describe('CountryList', () => {
-  const mockCountries = [
-    {
-      flags: { png: 'url1', alt: 'alt text 1' },
-      name: { common: 'country name 1' },
-      capital: ['capital name 1'],
-      region: 'region 1',
-      population: 1000000,
-      cca2: 'cc1',
-    },
-    {
-      flags: { png: 'url2', alt: 'alt text 2' },
-      name: { common: 'country name 2' },
-      capital: ['capital name 2'],
-      region: 'region 2',
-      population: 2000000,
-      cca2: 'cc2',
-    },
-  ];
-
-  it('renders CountryCard for each country', () => {
-    render(<CountryList search='country' countries={mockCountries} />);
-
-    expect(screen.getAllByTestId('country-card').length).toBe(2);
-    expect(screen.getByText('country name 1')).toBeInTheDocument();
-    expect(screen.getByText('country name 2')).toBeInTheDocument();
+  it('should render CountryList', () => {
+    render(
+      <CountryList search='' countries={mockCountries} selectedRegion='' />
+    );
+    mockCountries.forEach((country) => {
+      expect(screen.getByText(country.name.common)).toBeInTheDocument();
+    });
   });
 
-  it('renders no CountryCard when search does not match', () => {
-    render(<CountryList search='no match' countries={mockCountries} />);
+  it('should filter countries by search', () => {
+    render(
+      <CountryList
+        search='CountryA'
+        countries={mockCountries}
+        selectedRegion=''
+      />
+    );
+    expect(screen.getByText('CountryA')).toBeInTheDocument();
+    expect(screen.queryByText('CountryB')).toBeNull();
+  });
 
-    expect(screen.queryAllByTestId('country-card').length).toBe(0);
+  it('should filter countries by region', () => {
+    render(
+      <CountryList
+        search=''
+        countries={mockCountries}
+        selectedRegion='RegionB'
+      />
+    );
+    expect(screen.getByText('CountryB')).toBeInTheDocument();
+    expect(screen.queryByText('CountryA')).toBeNull();
   });
 });

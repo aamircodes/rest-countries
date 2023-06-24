@@ -1,6 +1,6 @@
-import { Country } from '../services/countryService';
+import { CountryProps } from '../services/countryService';
 export interface CountryCardProps {
-  country: Country;
+  country: CountryProps;
 }
 
 const CountryCard = ({ country }: CountryCardProps) => {
@@ -16,7 +16,7 @@ const CountryCard = ({ country }: CountryCardProps) => {
         <img src={flags.png} alt={flags.alt} />
       </figure>
       <div className='card-body h-1/2'>
-        <h2 className='card-title' data-testid='country-name'>
+        <h2 className='card-title'>
           <a href={`/${cca3}`}> {name.common}</a>
         </h2>
         {capital && (

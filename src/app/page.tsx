@@ -4,12 +4,12 @@ import { ChangeEvent, useCallback, useEffect, useState } from 'react';
 import CountrySearch from './components/CountrySearch';
 import Navbar from './components/Navbar';
 import CountryList from './components/CountryList';
-import { Country, getCountries } from './services/countryService';
+import { CountryProps, getCountries } from './services/countryService';
 import Filter from './components/RegionFilter';
 
 export default function Home() {
   const [countrySearch, setCountrySearch] = useState<string>('');
-  const [countries, setCountries] = useState<Country[]>([]);
+  const [countries, setCountries] = useState<CountryProps[]>([]);
   const [selectedRegion, setSelectedRegion] = useState<string>('');
 
   useEffect(() => {

@@ -11,8 +11,11 @@ const RegionFilter = ({
 }: RegionFilterProps) => {
   return (
     <div className='flex items-center'>
-      <label className='whitespace-nowrap mr-1'>Filter by Region</label>
+      <label className='whitespace-nowrap mr-1' htmlFor='regionSelect'>
+        Filter by Region
+      </label>
       <select
+        id='regionSelect'
         className='select select-bordered w-full max-w-xs'
         value={selectedRegion}
         onChange={(e) => setSelectedRegion(e.target.value)}

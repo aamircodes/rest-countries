@@ -1,9 +1,9 @@
-import { Country } from '../services/countryService';
+import { CountryProps } from '../services/countryService';
 import CountryCard from './CountryCard';
 
 interface CountryListProps {
   search: string;
-  countries: Country[];
+  countries: CountryProps[];
   selectedRegion: string;
 }
 

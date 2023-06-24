@@ -8,7 +8,7 @@ describe('CountrySearch', () => {
       <CountrySearch search='' handleSearchChange={mockHandleChange} />
     );
 
-    expect(getByPlaceholderText('Search for a country')).toBeInTheDocument();
+    expect(getByPlaceholderText('Search for a country...')).toBeInTheDocument();
   });
 
   it('calls handleSearchChange on input change', () => {
@@ -16,7 +16,7 @@ describe('CountrySearch', () => {
     const { getByPlaceholderText } = render(
       <CountrySearch search='' handleSearchChange={mockHandleChange} />
     );
-    const input = getByPlaceholderText('Search for a country');
+    const input = getByPlaceholderText('Search for a country...');
 
     fireEvent.change(input, { target: { value: 'Spain' } });
 

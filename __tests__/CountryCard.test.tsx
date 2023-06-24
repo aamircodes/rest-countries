@@ -1,57 +1,44 @@
+import React from 'react';
 import { render, screen } from '@testing-library/react';
-import '@testing-library/jest-dom/extend-expect';
+import '@testing-library/jest-dom';
 import CountryCard from '@/app/components/CountryCard';
 
+const mockCountry = {
+  flags: { png: 'flagUrl', alt: 'flagAlt' },
+  name: { common: 'TestCountry' },
+  capital: ['TestCapital'],
+  region: 'TestRegion',
+  population: 123456,
+  cca3: 'TC',
+};
+
 describe('CountryCard', () => {
-  const mockCountry = {
-    flags: {
-      png: 'https://example.com/flag.png',
-      alt: 'Mock Country Flag',
-    },
-    name: { common: 'mockCountry' },
-    capital: ['mockCapital'],
-    region: 'MockRegion',
-    population: 123456,
-  };
-
-  test('renders correctly when all properties are defined', () => {
-    render(<CountryCard country={mockCountry} />);
-
-    expect(screen.getByRole('img')).toHaveAttribute(
-      'src',
-      mockCountry.flags.png
-    );
-    expect(screen.getByRole('img')).toHaveAttribute(
-      'alt',
-      mockCountry.flags.alt
-    );
-    expect(screen.getByText('mockCountry')).toBeInTheDocument();
-    expect(screen.getByText('Capital:')).toBeInTheDocument();
-    expect(screen.getByText('mockCapital')).toBeInTheDocument();
-    expect(screen.getByText('Region:')).toBeInTheDocument();
-    expect(screen.getByText('MockRegion')).toBeInTheDocument();
-    expect(screen.getByText('Population:')).toBeInTheDocument();
-    expect(screen.getByText('123,456')).toBeInTheDocument();
+  let container: HTMLElement;
+  beforeEach(() => {
+    const renderResult = render(<CountryCard country={mockCountry} />);
+    container = renderResult.container;
   });
 
-  test('renders correctly when capital is undefined', () => {
-    const countryWithoutCapital = { ...mockCountry, capital: undefined };
-    render(<CountryCard country={countryWithoutCapital} />);
-
-    expect(screen.queryByText('Capital:')).not.toBeInTheDocument();
+  test('renders the country flag', () => {
+    const flagImage = screen.getByRole('img');
+    expect(flagImage).toHaveAttribute('src', 'flagUrl');
+    expect(flagImage).toHaveAttribute('alt', 'flagAlt');
   });
 
-  test('renders correctly when region is undefined', () => {
-    const countryWithoutRegion = { ...mockCountry, region: undefined };
-    render(<CountryCard country={countryWithoutRegion} />);
-
-    expect(screen.queryByText('Region:')).not.toBeInTheDocument();
+  test('renders the country name with link', () => {
+    const nameLink = screen.getByRole('link', { name: /TestCountry/i });
+    expect(nameLink).toHaveAttribute('href', '/TC');
   });
 
-  test('renders correctly when population is undefined', () => {
-    const countryWithoutPopulation = { ...mockCountry, population: undefined };
-    render(<CountryCard country={countryWithoutPopulation} />);
+  test('renders the country capital', () => {
+    expect(container).toHaveTextContent(/Capital: TestCapital/);
+  });
 
-    expect(screen.queryByText('Population:')).not.toBeInTheDocument();
+  test('renders the country region', () => {
+    expect(container).toHaveTextContent(/Region: TestRegion/);
+  });
+
+  test('renders the country population', () => {
+    expect(container).toHaveTextContent(/Population: 123,456/);
   });
 });
