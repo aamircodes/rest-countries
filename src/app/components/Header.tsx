@@ -1,6 +1,7 @@
+'use client';
 import useTheme from '../hooks/useTheme';
 
-const Navbar = () => {
+const Header = () => {
   const { handleToggle } = useTheme();
 
   return (
@@ -38,4 +39,4 @@ const Navbar = () => {
   );
 };
 
-export default Navbar;
+export default Header;

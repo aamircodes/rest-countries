@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { CountryProps } from '../services/countryService';
 export interface CountryCardProps {
   country: CountryProps;
@@ -17,7 +18,7 @@ const CountryCard = ({ country }: CountryCardProps) => {
       </figure>
       <div className='card-body h-1/2'>
         <h2 className='card-title'>
-          <a href={`/${cca3}`}> {name.common}</a>
+          <Link href={`/${cca3}`}> {name.common}</Link>
         </h2>
         {capital && (
           <div>

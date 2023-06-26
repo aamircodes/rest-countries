@@ -10,12 +10,77 @@ export default async function CountryPage({
   const data = await response.json();
   const country = data[0];
   return (
-    <>
-      <Link href='/'>
-        <button>Back</button>
-      </Link>
-      <div>Country: {country.name.common}</div>
-      <div>Capital: {country.capital}</div>
-    </>
+    <div className='min-h-screen w-11/12 mx-auto my-4'>
+      <div className='flex items-center my-4'>
+        <Link href='/'>
+          <button className='btn btn-sm btn-neutral normal-case'>
+            {' '}
+            <svg
+              xmlns='http://www.w3.org/2000/svg'
+              viewBox='0 0 20 20'
+              fill='currentColor'
+              className='w-5 h-5'
+            >
+              <path
+                fill-rule='evenodd'
+                d='M12.79 5.23a.75.75 0 01-.02 1.06L8.832 10l3.938 3.71a.75.75 0 11-1.04 1.08l-4.5-4.25a.75.75 0 010-1.08l4.5-4.25a.75.75 0 011.06.02z'
+                clip-rule='evenodd'
+              ></path>
+            </svg>
+            Back
+          </button>
+        </Link>
+      </div>
+
+      <div className='w-full flex gap-10 py-8 bg-base-200'>
+        <div>
+          <img
+            src={country.flags.png}
+            alt={country.flags.alt}
+            className=' w-full h-full object-cover border shadow-md'
+          />
+        </div>
+        <div>
+          <h1 className='text-2xl font-bold'>{country.name.common}</h1>
+          <div className='flex justify-between'>
+            <div id='main-details' className=''>
+              <div className='text-sm mt-3'>
+                <strong>Native Name: </strong>{' '}
+                {Object.values(country.name.nativeName)[0].common}
+              </div>
+              <div className='text-sm mt-3'>
+                <strong>Population: </strong> {country.population}
+              </div>
+              <div className='text-sm mt-3'>
+                <strong>Region: </strong> {country.region}
+              </div>
+              <div className='text-sm mt-3'>
+                <strong>Sub Region: </strong> {country.subregion}
+              </div>
+              <div className='text-sm mt-3'>
+                <strong>Capital: </strong> {country?.capital}
+              </div>
+            </div>
+            <div className='other-details'>
+              <div className='text-sm mt-3'>
+                <strong>Top Level Domain: </strong> {country?.tld[0]}
+              </div>
+              <div className='text-sm mt-3'>
+                <strong>Currency: </strong>{' '}
+                {Object.values(country.currencies as { name: string }[]).map(
+                  (currency: { name: string }) => (
+                    <span key={currency.name}>{currency.name}</span>
+                  )
+                )}
+              </div>
+              <div className='text-sm mt-3'>
+                <strong>Languages: </strong>{' '}
+                {Object.values(country.languages).join(', ')}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   );
 }

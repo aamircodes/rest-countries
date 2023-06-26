@@ -2,7 +2,7 @@
 
 import { ChangeEvent, useCallback, useEffect, useState } from 'react';
 import CountrySearch from './components/CountrySearch';
-import Navbar from './components/Navbar';
+import Header from './components/Header';
 import CountryList from './components/CountryList';
 import { CountryProps, getCountries } from './services/countryService';
 import Filter from './components/RegionFilter';
@@ -24,7 +24,6 @@ export default function Home() {
   );
   return (
     <>
-      <Navbar />
       <div className='w-11/12 mx-auto'>
         <div className='w-full flex flex-col sm:flex-row gap-2 sm:gap-0 justify-between items-center my-6'>
           <CountrySearch
