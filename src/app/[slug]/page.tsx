@@ -9,9 +9,10 @@ export default async function CountryPage({
   const response = await fetch(`https://restcountries.com/v3.1/alpha/${cca3}`);
   const data = await response.json();
   const country = data[0];
+
   return (
-    <div className='min-h-screen w-11/12 mx-auto my-4'>
-      <div className='flex items-center my-4'>
+    <div className='min-h-screen w-11/12 lg:w-5/6 mx-auto my-4 px-2 sm:px-0'>
+      <div className='flex items-center my-4 md:my-8'>
         <Link href='/'>
           <button className='btn btn-sm btn-neutral normal-case'>
             {' '}
@@ -22,50 +23,51 @@ export default async function CountryPage({
               className='w-5 h-5'
             >
               <path
-                fill-rule='evenodd'
+                fillRule='evenodd'
                 d='M12.79 5.23a.75.75 0 01-.02 1.06L8.832 10l3.938 3.71a.75.75 0 11-1.04 1.08l-4.5-4.25a.75.75 0 010-1.08l4.5-4.25a.75.75 0 011.06.02z'
-                clip-rule='evenodd'
+                clipRule='evenodd'
               ></path>
             </svg>
             Back
           </button>
         </Link>
       </div>
-
-      <div className='w-full flex gap-10 py-8 bg-base-200'>
-        <div>
+      <div className='grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 lg:gap-8 my-4 md:my-8'>
+        <div className='w-full sm:px-0'>
           <img
             src={country.flags.png}
             alt={country.flags.alt}
-            className=' w-full h-full object-cover border shadow-md'
+            className='w-full  object-cover shadow-md'
           />
         </div>
-        <div>
-          <h1 className='text-2xl font-bold'>{country.name.common}</h1>
-          <div className='flex justify-between'>
-            <div id='main-details' className=''>
-              <div className='text-sm mt-3'>
+        <div className='w-full'>
+          <h1 className='text-3xl sm:text-3xl font-bold mb-4 '>
+            {country.name.common}
+          </h1>
+          <div className='grid grid-cols-1 sm:grid-cols-2 gap-4'>
+            <div id='main-details' className='space-y-1'>
+              <div className='text-xs sm:text-sm'>
                 <strong>Native Name: </strong>{' '}
                 {Object.values(country.name.nativeName)[0].common}
               </div>
-              <div className='text-sm mt-3'>
+              <div className='text-xs sm:text-sm'>
                 <strong>Population: </strong> {country.population}
               </div>
-              <div className='text-sm mt-3'>
+              <div className='text-xs sm:text-sm'>
                 <strong>Region: </strong> {country.region}
               </div>
-              <div className='text-sm mt-3'>
+              <div className='text-xs sm:text-sm'>
                 <strong>Sub Region: </strong> {country.subregion}
               </div>
-              <div className='text-sm mt-3'>
+              <div className='text-xs sm:text-sm'>
                 <strong>Capital: </strong> {country?.capital}
               </div>
             </div>
-            <div className='other-details'>
-              <div className='text-sm mt-3'>
+            <div className='other-details space-y-1'>
+              <div className='text-xs sm:text-sm'>
                 <strong>Top Level Domain: </strong> {country?.tld[0]}
               </div>
-              <div className='text-sm mt-3'>
+              <div className='text-xs sm:text-sm'>
                 <strong>Currency: </strong>{' '}
                 {Object.values(country.currencies as { name: string }[]).map(
                   (currency: { name: string }) => (
@@ -73,11 +75,23 @@ export default async function CountryPage({
                   )
                 )}
               </div>
-              <div className='text-sm mt-3'>
+              <div className='text-xs sm:text-sm'>
                 <strong>Languages: </strong>{' '}
                 {Object.values(country.languages).join(', ')}
               </div>
             </div>
+          </div>
+
+          <div className='flex flex-wrap mt-4 md:mt-6 space-x-1 space-y-0.5 items-center'>
+            <strong className='w-full sm:w-auto'>Border countries:</strong>
+            {country.borders?.map((borderCountry) => (
+              <button
+                className='btn btn-sm btn-accent my-1 md:my-2 ml-2'
+                key={borderCountry}
+              >
+                <Link href={`/${borderCountry}`}>{borderCountry}</Link>
+              </button>
+            ))}
           </div>
         </div>
       </div>
