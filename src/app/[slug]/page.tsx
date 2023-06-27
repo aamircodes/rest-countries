@@ -84,9 +84,11 @@ export default async function CountryPage({
           <div className='flex flex-wrap mt-4 md:mt-6 space-x-1.5 space-y-1.5 items-center'>
             <strong className='w-full sm:w-auto'>Border countries:</strong>
             {country.borders?.map((borderCountry) => (
-              <button className='btn btn-sm btn-accent' key={borderCountry}>
-                <Link href={`/${borderCountry}`}>{borderCountry}</Link>
-              </button>
+              <Link key={borderCountry} href={`/${borderCountry}`}>
+                <button className='btn btn-sm btn-accent'>
+                  {borderCountry}
+                </button>
+              </Link>
             ))}
           </div>
         </div>
