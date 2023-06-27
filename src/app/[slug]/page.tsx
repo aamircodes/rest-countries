@@ -33,13 +33,12 @@ export default async function CountryPage({
         </Link>
       </div>
       <div className='grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 lg:gap-8 my-4 md:my-8'>
-        <div className='w-full sm:px-0'>
-          <img
-            src={country.flags.png}
-            alt={country.flags.alt}
-            className='w-full  object-cover shadow-md'
-          />
-        </div>
+        <img
+          src={country.flags.png}
+          alt={country.flags.alt}
+          className='w-full h-auto object-cover'
+        />
+
         <div className='w-full'>
           <h1 className='text-3xl sm:text-3xl font-bold mb-4 '>
             {country.name.common}
@@ -82,13 +81,10 @@ export default async function CountryPage({
             </div>
           </div>
 
-          <div className='flex flex-wrap mt-4 md:mt-6 space-x-1 space-y-0.5 items-center'>
+          <div className='flex flex-wrap mt-4 md:mt-6 space-x-1.5 space-y-1.5 items-center'>
             <strong className='w-full sm:w-auto'>Border countries:</strong>
             {country.borders?.map((borderCountry) => (
-              <button
-                className='btn btn-sm btn-accent my-1 md:my-2 ml-2'
-                key={borderCountry}
-              >
+              <button className='btn btn-sm btn-accent' key={borderCountry}>
                 <Link href={`/${borderCountry}`}>{borderCountry}</Link>
               </button>
             ))}
